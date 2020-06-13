@@ -1,0 +1,10 @@
+Atualizações a realizar:
+	- Comentar 100%
+	- Subir versão para o git
+ - Site:
+	- Atualizar com criação dos meses no profissional
+	- Colocar os controles para carregar alguma posição inicial
+	- Colocar formatação de numero onde for preciso.
+	- Criar função (botão) para passar o item para o mes seguinte (controle pessoal)
+ - App:
+	- Criar

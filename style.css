@@ -1,0 +1,52 @@
+/* Arquivo CSS para o programa OrgPes, desenvolvido por Ronaldo GAma - versão 1.0
+
+/*tags*/
+* {
+	font-family: Helvetica;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #F5F5F5;
+}
+
+header {
+	background-color: #4682B4;
+	height: 50px;
+	text-align: center;
+	padding: 50px;
+}
+
+footer {
+	background-color: #4682B4;
+	height: 30px;
+	text-align: center;
+	font-size: 8px;
+	padding: 5px;
+}
+
+/*class*/
+.home {
+	text-align: center;
+	min-height: 375px;
+	padding: 20px;
+}
+
+.home a {
+	font-size: 10px;
+	width: 160px;
+	height: 20px;
+	line-height: 20px;
+	padding: 3px;
+	margin: 10px;
+	background-color: #D3D3D3;
+	color: #1C1C1C;
+	border-radius: 5px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.home a:hover {
+	color: #1E90FF;
+}
