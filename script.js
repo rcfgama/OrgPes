@@ -56,3 +56,21 @@ function editx(edxid) {
 		formdex.submit();	
 
 }
+
+function copix(copid) {
+	
+		var formcopex = document.createElement("form");
+		formcopex.action = "?b=coppes";
+		formcopex.method = "post";
+
+		var incopId = document.createElement("input");
+		incopId.type = "hidden";
+		incopId.value = copid;
+		incopId.name = "id";
+		formcopex.appendChild(incopId);
+
+		document.body.appendChild(formcopex);
+
+		formcopex.submit();	
+
+}

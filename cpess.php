@@ -7,16 +7,16 @@
 			<form method="POST">
 				<td>
 					<select name="mes" value="Mês">
-						<option value="0"></option>
-						<option value="1">JANEIRO</option>
-						<option value="2">FEVEREIRO</option>
-						<option value="3">MARÇO</option>
-						<option value="4">ABRIL</option>
-						<option value="5">MAIO</option>
-						<option value="6">JUNHO</option>
-						<option value="7">JULHO</option>
-						<option value="8">AGOSTO</option>
-						<option value="9">SETEMBRO</option>
+						<option value="00">MÊS</option>
+						<option value="01">JANEIRO</option>
+						<option value="02">FEVEREIRO</option>
+						<option value="03">MARÇO</option>
+						<option value="04">ABRIL</option>
+						<option value="05">MAIO</option>
+						<option value="06">JUNHO</option>
+						<option value="07">JULHO</option>
+						<option value="08">AGOSTO</option>
+						<option value="09">SETEMBRO</option>
 						<option value="10">OUTUBRO</option>
 						<option value="11">NOVEMBRO</option>
 						<option value="12">DEZEMBRO</option>
@@ -36,23 +36,29 @@
 			/* Buscas no banco de dados e cálculos dos totais para montar a tabela com os valores totais. */ 
 			$mes = @$_POST['mes'];
 			$ano = @$_POST['ano'];
-
+			if ($mes == '') {
+				$messhow = date('m');
+				$anoshow = date('Y');
+			} else {
+				$messhow = $mes;
+				$anoshow = $ano;
+			}
 			include("conectx.php");
-			$resue = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalent FROM pessoal WHERE TIPO = 'ENTRADAS' AND MES = '$mes' AND ANO = '2020'");
+			$resue = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalent FROM pessoal WHERE TIPO = 'ENTRADAS' AND MES = '$messhow' AND ANO = '$anoshow'");
 				while($lint = mysqli_fetch_array($resue)) {
-			$resud = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totaldes FROM pessoal WHERE TIPO = 'DESPESAS' AND MES = '$mes' AND ANO = '2020'");
+			$resud = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totaldes FROM pessoal WHERE TIPO = 'DESPESAS' AND MES = '$messhow' AND ANO = '$anoshow'");
 				while($lind = mysqli_fetch_array($resud)) {
-			$resuo = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalout FROM pessoal WHERE TIPO = 'OUTRAS' AND MES = '$mes' AND ANO = '2020'");
+			$resuo = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalout FROM pessoal WHERE TIPO = 'OUTRAS' AND MES = '$messhow' AND ANO = '$anoshow'");
 				while($lino = mysqli_fetch_array($resuo)) {
-			$resuf = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalfix FROM pessoal WHERE TIPO = 'FIXAS' AND MES = '$mes' AND ANO = '2020'");
+			$resuf = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalfix FROM pessoal WHERE TIPO = 'FIXAS' AND MES = '$messhow' AND ANO = '$anoshow'");
 				while($linf = mysqli_fetch_array($resuf)) {
-			$resur = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalrnd FROM pessoal WHERE TIPO = 'RENDA' AND MES = '$mes' AND ANO = '2020'");
+			$resur = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalrnd FROM pessoal WHERE TIPO = 'RENDA' AND MES = '$messhow' AND ANO = '$anoshow'");
 				while($linr = mysqli_fetch_array($resur)) {
-			$resug = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalgst FROM pessoal WHERE TIPO = 'GASTOS' AND MES = '$mes' AND ANO = '2020'");
+			$resug = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalgst FROM pessoal WHERE TIPO = 'GASTOS' AND MES = '$messhow' AND ANO = '$anoshow'");
 				while($ling = mysqli_fetch_array($resug)) {
-			$resuv = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalvar FROM pessoal WHERE TIPO = 'VARIÁVEIS' AND MES = '$mes' AND ANO = '2020'");
+			$resuv = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalvar FROM pessoal WHERE TIPO = 'VARIÁVEIS' AND MES = '$messhow' AND ANO = '$anoshow'");
 				while($linv = mysqli_fetch_array($resuv)) {
-			$resuc = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalcon FROM pessoal WHERE TIPO = 'CONSUMO' AND MES = '$mes' AND ANO = '2020'");
+			$resuc = mysqli_query($conex, "SELECT SUM(round(VALOR,2)) AS totalcon FROM pessoal WHERE TIPO = 'CONSUMO' AND MES = '$messhow' AND ANO = '$anoshow'");
 				while($linc = mysqli_fetch_array($resuc)) {
 			$custo = $lind['totaldes']+$lino['totalout']+$linf['totalfix']+$ling['totalgst']+$linv['totalvar']+$linc['totalcon'];
 			$renda = $lint['totalent']+$linr['totalrnd'];
@@ -77,7 +83,33 @@
 		<a href="?b=home">VOLTAR</a>
 	</p>
 	<br>
-	<h3>QUADRO GERAL (<?=$mes?>/<?=$ano?>)</h3>
+	<?php
+	if ($messhow == 1) {
+		$mesescr = 'JAN';
+	} elseif ($messhow == 2) {
+		$mesescr = 'FEV';
+	} elseif ($messhow == 3) {
+		$mesescr = 'MAR';
+	} elseif ($messhow == 4) {
+		$mesescr = 'ABR';
+	} elseif ($messhow == 5) {
+		$mesescr = 'MAI';
+	} elseif ($messhow == 6) {
+		$mesescr = 'JUN';
+	} elseif ($messhow == 7) {
+		$mesescr = 'JUL';
+	} elseif ($messhow == 8) {
+		$mesescr = 'AGO';
+	} elseif ($messhow == 9) {
+		$mesescr = 'SET';
+	} elseif ($messhow == 10) {
+		$mesescr = 'OUT';
+	} elseif ($messhow == 11) {
+		$mesescr = 'NOV';
+	} else {
+		$mesescr = 'DEZ';
+	}?>
+	<h3>QUADRO GERAL (<?=$mesescr?>/<?=$anoshow?>)</h3>
 	<br>
 	<table align="center" border="1">
 		<tr>
@@ -122,9 +154,10 @@
 			<td align="center">OBS.</td>
 			<td align="center">EDITAR</td>
 			<td align="center">DELETAR</td>
+			<td align="center">COPIAR</td>
 		</tr>
 		<?php
-		$selec = mysqli_query($conex, "SELECT * FROM PESSOAL WHERE MES = '$mes' AND ANO = '2020'");
+		$selec = mysqli_query($conex, "SELECT * FROM PESSOAL WHERE MES = '$messhow' AND ANO = '2020'");
 			while ($line = mysqli_fetch_array($selec)) {?>
 				<tr>
 					<td><?=$line["NOME"]?></td>
@@ -135,6 +168,7 @@
 					<td><?=$line["OBS"]?></td>
 					<td align="center"><a href="#" onclick="editx(<?=$line["ID"]?>)">Editar</a></td>
 					<td align="center"><a href="#" onclick="verificx(<?=$line["ID"]?>)">Excluir</a></td>
+					<td align="center"><a href="#" onclick="copix(<?=$line["ID"]?>)">Copiar</a></td>
 				</tr>
 		<?php	}?>
 	</table>

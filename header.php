@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<!-- Arquivo Header para o programa OrgPes. Desenvolvido por Ronaldo Gama. Versão 1.0 -->
 	<head>

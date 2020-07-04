@@ -3,9 +3,8 @@
 	<br>
 	<table align="center" border="1">
 		<tr>
-			<td>ID</td>
 			<td>NOME</td>
-			<td>TPO</td>
+			<td>TIPO</td>
 			<td>PREVISTO</td>
 			<td>VALOR</td>
 			<td>STATUS</td>
@@ -21,9 +20,6 @@
 				while($line = mysqli_fetch_array($busca)) {?>
 					<form action="?b=salvpess" method="post">						
 						<tr>
-							<td>
-								<input type="hidden" name="id" placeholder="ID" required class="input" value="<?=$line["ID"]?>">
-							</td>
 							<td>
 								<input type="text" name="nome" placeholder="NOME" required class="input" value="<?=$line["NOME"]?>">
 							</td>
@@ -43,6 +39,7 @@
 								<input type="text" name="obs" placeholder="OBS." required class="input" value="<?=$line["OBS"]?>">
 							</td>
 							<td align="center">
+								<input type="hidden" name="id" placeholder="ID" required class="input" value="<?=$line["ID"]?>">
 								<input type="submit" value="SALVAR" name="submit">
 							</td>
 						</tr>

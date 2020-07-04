@@ -66,6 +66,10 @@ switch ($pag) {
 		include 'salvpess.php';
 		break;
 
+	case 'coppes':
+		include 'coppes.php';
+		break;
+
 	default:
 		include 'home.php';
 		break;
